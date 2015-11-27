@@ -16,9 +16,12 @@
       <tr>
         <td><%= sitepage.title %></td>
         <td><%= sitepage.body %></td>
-        <td><%= link_to 'Show', sitepage %></td>
-        <td><%= link_to 'Edit', edit_sitepage_path(sitepage) %></td>
-        <td><%= link_to 'Destroy', sitepage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Read', sitepage %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Edit', edit_sitepage_path(sitepage) %></td>
+          <td><%= link_to 'Destroy', sitepage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><strong><%= link_to 'Add New', new_sitepage_path %></strong></td>
+        <% end %>  
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Sitepage', new_sitepage_path %>
+
