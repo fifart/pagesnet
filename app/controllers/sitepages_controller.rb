@@ -14,7 +14,7 @@ class SitepagesController < ApplicationController
 
   # GET /sitepages/new
   def new
-    @sitepage = Sitepage.new
+        @sitepage = current_user.sitepages.build
   end
 
   # GET /sitepages/1/edit
@@ -24,7 +24,7 @@ class SitepagesController < ApplicationController
   # POST /sitepages
   # POST /sitepages.json
   def create
-    @sitepage = Sitepage.new(sitepage_params)
+    @sitepage = current_user.sitepages.build(sitepage_params)
 
     respond_to do |format|
       if @sitepage.save
@@ -69,6 +69,6 @@ class SitepagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sitepage_params
-      params.require(:sitepage).permit(:title, :body, :image)
+      params.require(:sitepage).permit(:title, :body, :image, :user_id)
     end
 end
