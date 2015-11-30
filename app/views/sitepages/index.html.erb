@@ -1,37 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Sitepages</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if user_signed_in? %>
-    <% if @sitepages.exists?(user_id: current_user.id) %> <strong>Sorry No More Pages to Add</strong><% else %> <%= link_to 'Add New Page', new_sitepage_path %></strong> <% end %>
-    <% end %>
-    <% @sitepages.each do |sitepage| %>
-      <tr>
-        <td><%= sitepage.title %></td>
-        <td><%= sitepage.body %></td>
-        <td><%= sitepage.user.email %></td>
-        <td><%= link_to 'Read', sitepage %></td>
+<div class="container">
+  <div class="row">
+     <h4><% if user_signed_in? %>
+      <% if @sitepages.exists?(user_id: current_user.id) %>
+      <div class="alert alert-info" role="alert">Sorry No More Pages to Add</div>
+      <% else %>
+      <div class="alert alert-info" role="alert"><%= link_to 'Add New Page', new_sitepage_path %></div>
+      <% end %>
+      <% end %>
+    </h4>
+  </div>
+  <div class="row">
+  <% @sitepages.each do |sitepage| %>  
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <%= image_tag sitepage.image.url() %>
+      <div class="caption">
+        <h3><td><%= sitepage.title %></td></h3>
+        <p><%= sitepage.body %></p>
+        <p><%= sitepage.user.email %></p>
+        <p><%= link_to 'Read', sitepage, class:'btn btn-primary' %>
         <% if user_signed_in? %>
         <% if sitepage.user == current_user %>
-          <td><%= link_to 'Edit', edit_sitepage_path(sitepage) %></td>
-          <td><%= link_to 'Destroy', sitepage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        <% end %>  
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
+        <%= link_to 'Edit', edit_sitepage_path(sitepage), class:'btn btn-warning' %>
+        <%= link_to 'Destroy', sitepage, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+         <% end %>
+        <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+   <% end %>
+</div>
+</div>

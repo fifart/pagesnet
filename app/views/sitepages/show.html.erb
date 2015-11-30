@@ -1,14 +1,8 @@
-<p id="notice"><%= notice %></p>
 <%= image_tag @sitepage.image.url(:medium) %>
-<p>
-  <strong>Title:</strong>
-  <%= @sitepage.title %>
+<p><%= @sitepage.title %>
 </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @sitepage.body %>
-</p>
+<p><%= @sitepage.body %></p>
 
-<%= link_to 'Edit', edit_sitepage_path(@sitepage) %> |
-<%= link_to 'Back', sitepages_path %>
+<%= link_to 'Edit', edit_sitepage_path(@sitepage), class:'btn btn-warning' %> 
+<%= link_to 'Back', sitepages_path,  class:'btn btn-success' %>
